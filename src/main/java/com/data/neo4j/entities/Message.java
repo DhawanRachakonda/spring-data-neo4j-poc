@@ -10,7 +10,7 @@ import java.util.List;
 @NodeEntity(label = "Message")
 @Data
 @Builder
-public class Message {
+public class Message implements Comparable<Message> {
 
     @Id
     @GeneratedValue
@@ -23,4 +23,9 @@ public class Message {
     private Message message;
     @Property("created_at")
     private LocalDateTime createdAt;
+
+    @Override
+    public int compareTo(Message o) {
+        return this.getCreatedAt().isBefore(o.getCreatedAt()) ? -1 : 1;
+    }
 }
