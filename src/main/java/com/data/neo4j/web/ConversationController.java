@@ -1,6 +1,6 @@
 package com.data.neo4j.web;
 
-import com.data.neo4j.ConversationService;
+import com.data.neo4j.service.ConversationService;
 import com.data.neo4j.dto.PostConversationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

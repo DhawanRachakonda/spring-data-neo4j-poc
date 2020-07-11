@@ -1,4 +1,4 @@
-package com.data.neo4j;
+package com.data.neo4j.service;
 
 import com.data.neo4j.dto.PostConversationDTO;
 import com.data.neo4j.dto.PostConversationResponseDTO;
