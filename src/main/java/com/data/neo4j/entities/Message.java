@@ -1,5 +1,6 @@
 package com.data.neo4j.entities;
 
+import lombok.Builder;
 import lombok.Data;
 import org.neo4j.ogm.annotation.*;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @NodeEntity(label = "Message")
 @Data
+@Builder
 public class Message {
 
     @Id

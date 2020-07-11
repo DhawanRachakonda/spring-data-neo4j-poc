@@ -1,5 +1,6 @@
 package com.data.neo4j.entities;
 
+import lombok.Builder;
 import lombok.Data;
 import org.neo4j.ogm.annotation.*;
 
@@ -8,6 +9,7 @@ import java.util.SortedSet;
 
 @NodeEntity
 @Data
+@Builder
 public class Conversation {
     @Id
     @GeneratedValue
