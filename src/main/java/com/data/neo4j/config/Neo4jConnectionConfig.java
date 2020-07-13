@@ -14,8 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class Neo4jConnectionConfig {
 
+    @Bean
     public SessionFactory sessionFactory() {
-        return new SessionFactory(configuration());
+        return new SessionFactory(configuration(), "com.data.neo4j.entities");
     }
 
     @Bean
