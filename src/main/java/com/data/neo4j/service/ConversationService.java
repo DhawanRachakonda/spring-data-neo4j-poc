@@ -4,6 +4,7 @@ import com.data.neo4j.dto.PostConversationDTO;
 import com.data.neo4j.dto.PostConversationResponseDTO;
 import com.data.neo4j.dto.PostMessageDTO;
 import com.data.neo4j.dto.PostMessageResponseDTO;
+import com.data.neo4j.entities.Attachment;
 import com.data.neo4j.entities.Conversation;
 import com.data.neo4j.entities.Message;
 import com.data.neo4j.repositories.ConversationRepository;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @Service
 public class ConversationService {
@@ -32,7 +34,7 @@ public class ConversationService {
 
     public PostConversationResponseDTO createConversation(PostConversationDTO conversationDTO) {
         Message message = Message.builder()
-                .attachments(conversationDTO.getAttachments())
+                .attachments(conversationDTO.getAttachments().stream().map(url -> Attachment.builder().url(url).build()).collect(Collectors.toList()))
                 .content(conversationDTO.getMessage())
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -49,7 +51,7 @@ public class ConversationService {
 
         return PostConversationResponseDTO.builder()
                 .id(postConversation.getConversationId())
-                .message(postConversation.getMessages().first().getMessage().getContent())
+                .message(postConversation.getMessages().first().getContent())
                 .ticketId((postConversation.getTicketId())).build();
     }
 
@@ -61,7 +63,7 @@ public class ConversationService {
 
         Message latestMessage = Message.builder()
                 .content(postMessageDTO.getMessage())
-                .attachments(postMessageDTO.getAttachments())
+                .attachments(postMessageDTO.getAttachments().stream().map(attachment -> Attachment.builder().url(attachment).build()).collect(Collectors.toList()))
                 .createdAt(LocalDateTime.now())
                 .build();
 

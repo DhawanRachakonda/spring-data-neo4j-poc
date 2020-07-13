@@ -18,7 +18,7 @@ public class Message implements Comparable<Message> {
     private Long messageId;
     private String content;
     @Relationship(type = "HAS_ATTACHMENTS")
-    private List<String> attachments;
+    private List<Attachment> attachments;
     @Relationship(type = "IS_LINKED_TO")
     private Message message;
     @Property("created_at")
